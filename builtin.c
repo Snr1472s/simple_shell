@@ -1,6 +1,25 @@
 #include "shell.h"
 
 /**
+ * _env - prints the current environment
+ * @vars: struct of variables
+ * Return: void
+ */
+
+void _env(vars_t *vars)
+{
+	unsigned int w;
+
+	for (w = 0; vars->env[w]; w++)
+	{
+		_puts(vars->env[w]);
+		_puts("\n");
+	}
+	vars->status = 0;
+}
+
+
+/**
  * check_for_builtin - checks for builtin commands
  * @vars: variables parameter
  * Return: pointer to the function or NULL
@@ -9,6 +28,7 @@
 void (*check_for_builtin(vars_t *vars))(vars_t *vars)
 {
 	unsigned int s;
+
 	builtin_t check[] = {
 		{"exit", new_exit},
 		{"env", _env},
@@ -25,56 +45,6 @@ void (*check_for_builtin(vars_t *vars))(vars_t *vars)
 	if (check[s].f != NULL)
 		check[s].f(vars);
 	return (check[s].f);
-}
-
-/**
- * new_exit - exit program
- * @vars: variables
- * Return: void
- */
-
-void new_exit(vars_t *vars)
-{
-	int status;
-
-	if (_strcmpr(vars->av[0], "exit") == 0 && vars->av[1] != NULL)
-	{
-		status = _atoi(vars->av[1]);
-		if (status == -1)
-		{
-			vars->status = 2;
-			print_error(vars, ": Illegal number: ");
-			_puts2(vars->av[1]);
-			_puts2("\n");
-			free(vars->commands);
-			vars->commands = NULL;
-			return;
-		}
-		vars->status = status;
-	}
-	free(vars->buffer);
-	free(vars->av);
-	free(vars->commands);
-	free_env(vars->env);
-	exit(vars->status);
-}
-
-/**
- * _env - prints the current environment
- * @vars: struct of variables
- * Return: void
- */
-
-void _env(vars_t *vars)
-{
-	unsigned int w;
-
-	for (w = 0; vars->env[w]; w++)
-	{
-		_puts(vars->env[w]);
-		_puts("\n");
-	}
-	vars->status = 0;
 }
 
 /**
@@ -126,7 +96,6 @@ void new_setenv(vars_t *vars)
 void new_unsetenv(vars_t *vars)
 {
 	char **key, **newenv;
-
 	unsigned int x, y;
 
 	if (vars->av[1] == NULL)
@@ -159,4 +128,37 @@ void new_unsetenv(vars_t *vars)
 	free(vars->env);
 	vars->env = newenv;
 	vars->status = 0;
+}
+
+
+/**
+ * new_exit - exit program
+ * @vars: variables
+ * Return: void
+ */
+
+void new_exit(vars_t *vars)
+{
+	int status;
+
+	if (_strcmpr(vars->av[0], "exit") == 0 && vars->av[1] != NULL)
+	{
+		status = _atoi(vars->av[1]);
+		if (status == -1)
+		{
+			vars->status = 2;
+			print_error(vars, ": Illegal number: ");
+			_puts_2(vars->av[1]);
+			_puts_2("\n");
+			free(vars->commands);
+			vars->commands = NULL;
+			return;
+		}
+		vars->status = status;
+	}
+	free(vars->buffer);
+	free(vars->av);
+	free(vars->commands);
+	free_env(vars->env);
+	exit(vars->status);
 }
