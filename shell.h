@@ -80,4 +80,7 @@ unsigned int _strlen(char *str);
 char **make_env(char **env);
 void free_env(char **env);
 
+/* global variable for ^C handling */
+unsigned int sig_flag;
+
 #endif

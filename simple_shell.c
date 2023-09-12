@@ -5,10 +5,10 @@ unsigned int sig_flag;
 
 /**
  * sig_handler - handles ^C signal interupt
- * @uuv: unused variable (required for signal function prototype)
- *
+ * @uuv: unused variable
  * Return: void
  */
+
 static void sig_handler(int uuv)
 {
 	(void) uuv;
@@ -18,26 +18,19 @@ static void sig_handler(int uuv)
 		_puts("\n");
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 192b35dc788554b387db4bbc58ef3c27a3726055
 /**
  * main - main function for the shell
- * @argc: number of arguments passed to main
- * @argv: array of arguments passed to main
- * @environment: array of environment variables
- *
+ * @argc: parameter
+ * @argv: parameter
+ * @environment: array of environment parameter
  * Return: 0 or exit status, or ?
  */
-<<<<<<< HEAD
 
-=======
->>>>>>> 192b35dc788554b387db4bbc58ef3c27a3726055
 int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
 	size_t len_buffer = 0;
-	unsigned int is_pipe = 0, i;
+	unsigned int is_pipe = 0, s;
 	vars_t vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
 
 	vars.argv = argv;
@@ -53,9 +46,9 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		sig_flag = 1;
 		vars.count++;
 		vars.commands = tokensize(vars.buffer, ";");
-		for (i = 0; vars.commands && vars.commands[i] != NULL; i++)
+		for (s = 0; vars.commands && vars.commands[s] != NULL; s++)
 		{
-			vars.av = tokensize(vars.commands[i], "\n \t\r");
+			vars.av = tokensize(vars.commands[s], "\n \t\r");
 			if (vars.av && vars.av[0])
 				if (check_for_builtin(&vars) == NULL)
 					check_for_path(&vars);
