@@ -1,5 +1,8 @@
 #include "shell.h"
 
+/* global variable for ^C handling */
+unsigned int sig_flag;
+
 /**
  * sig_handler - handles ^C signal interupt
  * @uuv: unused variable (required for signal function prototype)
@@ -46,7 +49,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		{
 			vars.av = tokensize(vars.commands[i], "\n \t\r");
 			if (vars.av && vars.av[0])
-				if (check_for_builtins(&vars) == NULL)
+				if (check_for_builtin(&vars) == NULL)
 					check_for_path(&vars);
 			free(vars.av);
 		}
