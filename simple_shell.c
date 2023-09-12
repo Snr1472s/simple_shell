@@ -18,7 +18,10 @@ static void sig_handler(int uuv)
 		_puts("\n");
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 192b35dc788554b387db4bbc58ef3c27a3726055
 /**
  * main - main function for the shell
  * @argc: number of arguments passed to main
@@ -27,7 +30,10 @@ static void sig_handler(int uuv)
  *
  * Return: 0 or exit status, or ?
  */
+<<<<<<< HEAD
 
+=======
+>>>>>>> 192b35dc788554b387db4bbc58ef3c27a3726055
 int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
 	size_t len_buffer = 0;
