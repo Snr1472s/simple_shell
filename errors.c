@@ -42,7 +42,7 @@ void print_error(vars_t *vars, char *msg)
 	_puts_2(vars->av[0]);
 	if (msg)
 	{
-		_puts2(msg);
+		_puts_2(msg);
 	}
 	else
 		perror("");
