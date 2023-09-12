@@ -35,16 +35,16 @@ typedef struct variables
 } vars_t;
 
 /**
- * struct builtins - struct for the builtin functions
+ * struct builtin - struct for the builtin functions
  * @name: name of builtin command
  * @f: function for corresponding builtin
  */
 
-typedef struct builtins
+typedef struct builtin
 {
 	char *name;
 	void (*f)(vars_t *);
-} builtins_t;
+} builtin_t;
 
 char **make_env(char **env);
 void free_env(char **env);
@@ -59,7 +59,7 @@ char **tokenize(char *buffer, char *delimiter);
 char **_realloc(char **ptr, size_t *size);
 char *new_strtok(char *str, const char *delim);
 
-void (*check_for_builtins(vars_t *vars))(vars_t *vars);
+void (*check_for_builtin(vars_t *vars))(vars_t *vars);
 void new_exit(vars_t *vars);
 void _env(vars_t *vars);
 void new_setenv(vars_t *vars);
@@ -78,6 +78,6 @@ int check_for_dir(char *str);
 
 void print_error(vars_t *vars, char *msg);
 void _puts2(char *str);
-char *_uitoa(unsigned int count);
+char *_uitoa(unsigned int count);
 
 #endif
