@@ -46,7 +46,7 @@ typedef struct builtin
 	void (*f)(vars_t *);
 } builtin_t;
 
-char **tokenize(char *buffer, char *delimiter);
+char **tokensize(char *buffer, char *delimiter);
 char **_realloc(char **ptr, size_t *size);
 char *new_strtok(char *str, const char *delim);
 
