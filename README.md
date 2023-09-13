@@ -56,6 +56,7 @@ _strlen - calculates the length of a string
 tokensize - creates an array of tokens from a buffer with a specified delimiter
 
 Requirements:
+
 - Clone this repository: git clone "git@github.com:Snr1472s/simple_shell.git"
 - Change directories into the repository: cd simple_shell
 - Compile: gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
